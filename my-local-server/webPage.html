@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Button</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .buy-button {
+        padding: 15px 30px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="buy-button" onclick="callAPI()">Buy</button>
+
+    <script>
+      async function callAPI() {
+        let headersList = {
+          Accept: "*/*",
+        };
+
+        let response = await fetch(
+          "http://localhost:3002/balance?publicKey=GAMUIHXIGQFMEY4UPY5VMW4MFKMO7GUVSW5VDPLOZVTLXJJ6JWZET7XC",
+          {
+            method: "GET",
+            headers: headersList,
+          }
+        );
+
+        let data = await response.text();
+        console.log(data);
+      }
+    </script>
+  </body>
+</html>
